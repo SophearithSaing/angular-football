@@ -11,6 +11,12 @@ export class DataService {
   apiHost = environment.apiHost;
   apiKey = environment.apiKey;
 
+  laLigaId = 140;
+  eplId = 39;
+  serieAId = 135;
+  bundesligaId = 78;
+  league1Id = 61;
+
   constructor(private http: HttpClient) { }
 
   getFixtures = (league: string, date: string) => {

@@ -242,22 +242,6 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    // for (let round = 0; round < 5; round++) {
-    //   const dateString = `${this.fullDate.getFullYear()}-${this.fullDate.getMonth() + 1}-${this.fullDate.getDate() - 2 + round}`;
-    //   this.dataService.getFixtures('39', dateString).subscribe(data => {
-    //     this.fixtures = {
-    //       round,
-    //       date: dateString,
-    //       fixtures: data.response
-    //     };
-    //     // console.log(round, this.fixtures);
-    //     this.plFixtures.push(this.fixtures);
-    //     console.log(this.plFixtures);
-    //     this.plFixtures.sort((a, b) => (a.round < b.round ? -1 : 1));
-    //     console.log(this.plFixtures);
-    //   });
-    // }
-
     // this.getFixtures();
     this.getDates(this.fullDate);
   }
@@ -273,22 +257,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // getFixtures = () => {
-  //   for (let round = 0; round < 3; round++) {
-  //     const dateString = `${this.fullDate.getFullYear()}-${this.fullDate.getMonth() + 1}-${this.fullDate.getDate() - 1 + round}`;
-  //     this.fixtures = {
-  //       round,
-  //       date: dateString,
-  //       fixtures: this.sampleFixtures
-  //     };
-  //     this.plFixtures.push(this.fixtures);
-  //     this.plFixtures.sort((a, b) => (a.round < b.round ? -1 : 1));
-  //   }
-  //   console.log(this.plFixtures);
-  // }
-
   openFixture = (matchIndex: number) => {
-    console.log(matchIndex)
+    console.log(matchIndex);
   }
 
   getSelectedDate = (date: string) => {
