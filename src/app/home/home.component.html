@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+  <button mat-button (click)="changeDate(dates[0])">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <div *ngFor="let date of dates" class="spacer md-date">
+    <button mat-raised-button (click)="getSelectedDate(date)">
+      {{date}}
+    </button>
+  </div>
+  <div class="spacer sm-date">
+    <button mat-raised-button>
+      {{dates[1]}}
+    </button>
+  </div>
+  <button mat-button (click)="changeDate(dates[2])">
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
+</mat-toolbar>
+<h1 class="mat-display-1">Matches</h1>
+<div class="fixture_list" *ngFor="let fixture of sampleFixtures; index as i">
+  <mat-card class="fixture" (click)="openFixture(i)">
+    <img mat-card-avatar class="logo" src={{fixture.teams.home.logo}} alt="">
+    <p>{{fixture.teams.home.name}} {{fixture.goals.home}}-{{fixture.goals.away}} {{fixture.teams.away.name}}</p>
+    <img mat-card-avatar class="logo" src={{fixture.teams.away.logo}} alt="">
+  </mat-card>
+  <!-- <mat-card>
+    <div class="fixture__stats">
+      <div class="fixture__stats__home">
+        <p *ngFor="let item of homeStat.statistics">{{item.value === null ? 'N/A' : item.value}}</p>
+      </div>
+      <div class="fixture__stats__type">
+        <p *ngFor="let item of homeStat.statistics">{{item.type}}</p>
+      </div>
+      <div class="fixture__stats__away">
+        <p *ngFor="let item of awayStat.statistics">{{item.value === null ? 'N/A' : item.value}}</p>
+      </div>
+    </div>
+  </mat-card> -->
+</div>
