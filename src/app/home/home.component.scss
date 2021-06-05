@@ -1,19 +1,18 @@
-@media (max-width: 500px) {
-  .md-date {
-    display: none;
-  }
-}
+@import '../../themes.scss';
 
-@media (min-width: 500px) {
-  .sm-date {
-    display: none;
+.dates {
+  display: flex;
+  justify-content: space-between;
+  .button,
+  .date {
+    border-color: nb-theme(color-primary-400);
+    background: nb-theme(color-primary-transparent-100);
+    color: nb-theme(color-basic-100);
+    &:hover {
+      border-color: nb-theme(color-primary-400);
+      background: nb-theme(color-primary-400);
+    }
   }
-}
-
-.mat-display-1 {
-  text-align: center;
-  margin: 10px;
-  padding: 0;
 }
 
 .fixture_list {
