@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
 
   fullDate = new Date();
   selectedDate: string;
-  dates = [];
+  dates: Array<{month: string, date: string | number}>;
 
   plFixtures = [];
   fixtures = {};
@@ -249,9 +249,13 @@ export class HomeComponent implements OnInit {
   getDates = (date: Date) => {
     this.dates = [];
     let newDate = new Date(date.setDate(date.getDate() - 1));
-    for (let round = 0; round < 3; round++) {
+    for (let round = 0; round < 5; round++) {
       const dateString = `${newDate.getDate() < 9 ? '0' + (newDate.getDate()) : (newDate.getDate())}-${newDate.getMonth() < 9 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1)}-${newDate.getFullYear()}`;
-      this.dates.push(dateString);
+      const dateobject = {
+        month: newDate.toLocaleDateString('en-Us', { month: 'short' }),
+        date: newDate.getDate() < 9 ? '0' + (newDate.getDate()) : (newDate.getDate())
+      };
+      this.dates.push(dateobject);
       newDate = new Date(date.setDate(date.getDate() + 1));
     }
   }
@@ -264,11 +268,11 @@ export class HomeComponent implements OnInit {
     console.log(date);
   }
 
-  changeDate = (dateString: string) => {
-    const dateArr = dateString.split('-');
-    const date = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
-    this.getDates(date);
-  }
+  // changeDate = (dateString: string) => {
+  //   const dateArr = dateString.split('-');
+  //   const date = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
+  //   this.getDates(date);
+  // }
 
   getFixtures = (date: string) => {
     // TODO: format the date to get new string

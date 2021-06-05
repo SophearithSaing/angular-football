@@ -5,12 +5,19 @@
   justify-content: space-between;
   .button,
   .date {
-    border-color: nb-theme(color-primary-400);
+    border: 1px solid nb-theme(color-primary-400);
+    border-radius: 4px;
     background: nb-theme(color-primary-transparent-100);
     color: nb-theme(color-basic-100);
+    padding: 15px 10px;
+    text-align: center;
     &:hover {
       border-color: nb-theme(color-primary-400);
       background: nb-theme(color-primary-400);
+    }
+    p {
+      font-weight: 600;
+      margin: 0;
     }
   }
 }

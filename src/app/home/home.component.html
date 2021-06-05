@@ -1,11 +1,12 @@
 <div class="dates">
-  <button nbButton (click)="changeDate(dates[0])" class="button">
+  <button nbButton class="button">
     <nb-icon icon="arrow-left-outline"></nb-icon>
   </button>
-  <button *ngFor="let date of dates" nbButton (click)="getSelectedDate(date)" class="date">
-    {{date}}
-  </button>
-  <button nbButton (click)="changeDate(dates[2])" class="button">
+  <div *ngFor="let date of dates" nbButton (click)="getSelectedDate(date)" class="date">
+    <p>{{date.month}}</p>
+    <p>{{date.date}}</p>
+  </div>
+  <button nbButton class="button">
     <nb-icon icon="arrow-right-outline"></nb-icon>
   </button>
 </div>
