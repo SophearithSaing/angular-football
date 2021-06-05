@@ -26,17 +26,17 @@
     <nb-accordion-item-body>
       <div class="fixture__stats">
         <div class="fixture__stats__home">
-          <p *ngFor="let stat of homeStat.statistics">
+          <p *ngFor="let stat of homeStat?.statistics">
             {{stat.value ? stat.value : 'N/A'}}
           </p>
         </div>
         <div class="fixture__stats__type">
-          <p *ngFor="let stat of homeStat.statistics">
+          <p *ngFor="let stat of homeStat?.statistics">
             {{stat.type}}
           </p>
         </div>
         <div class="fixture__stats__away">
-          <p *ngFor="let stat of awayStat.statistics">
+          <p *ngFor="let stat of awayStat?.statistics">
             {{stat.value ? stat.value : 'N/A'}}
           </p>
         </div>

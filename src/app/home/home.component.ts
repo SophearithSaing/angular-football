@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { FixtureStat } from '../models/fixtureStat.model';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,13 @@ export class HomeComponent implements OnInit {
 
   fullDate = new Date();
   selectedDate = `${this.fullDate.getFullYear()}-${this.fullDate.getMonth() < 9 ? '0' + (this.fullDate.getMonth() + 1) : (this.fullDate.getMonth() + 1)}-${this.fullDate.getDate() < 10 ? '0' + (this.fullDate.getDate()) : (this.fullDate.getDate())}`;
-  dates: Array<{ month: string, date: string, dateString: string }>;
+  dates: Array<{ month: string; date: string; dateString: string }>;
 
   plFixtures = [];
   fixtures = {};
+
+  homeStat: FixtureStat;
+  awayStat: FixtureStat;
 
   sampleFixture = {
     fixture: {
@@ -84,168 +88,14 @@ export class HomeComponent implements OnInit {
     }
   };
 
-  homeStat = {
-    team: {
-      id: 463,
-      name: 'Aldosivi',
-      logo: 'https://media.api-sports.io/football/teams/463.png'
-    },
-    statistics: [
-      {
-        type: 'Shots on Goal',
-        value: 3
-      },
-      {
-        type: 'Shots off Goal',
-        value: 2
-      },
-      {
-        type: 'Total Shots',
-        value: 9
-      },
-      {
-        type: 'Blocked Shots',
-        value: 4
-      },
-      {
-        type: 'Shots insidebox',
-        value: 4
-      },
-      {
-        type: 'Shots outsidebox',
-        value: 5
-      },
-      {
-        type: 'Fouls',
-        value: 22
-      },
-      {
-        type: 'Corner Kicks',
-        value: 3
-      },
-      {
-        type: 'Offsides',
-        value: 1
-      },
-      {
-        type: 'Ball Possession',
-        value: '32%'
-      },
-      {
-        type: 'Yellow Cards',
-        value: 5
-      },
-      {
-        type: 'Red Cards',
-        value: 1
-      },
-      {
-        type: 'Goalkeeper Saves',
-        value: null
-      },
-      {
-        type: 'Total passes',
-        value: 242
-      },
-      {
-        type: 'Passes accurate',
-        value: 121
-      },
-      {
-        type: 'Passes %',
-        value: null
-      }
-    ]
-  };
-
-  awayStat = {
-    team: {
-      id: 463,
-      name: 'Aldosivi',
-      logo: 'https://media.api-sports.io/football/teams/463.png'
-    },
-    statistics: [
-      {
-        type: 'Shots on Goal',
-        value: 3
-      },
-      {
-        type: 'Shots off Goal',
-        value: 2
-      },
-      {
-        type: 'Total Shots',
-        value: 9
-      },
-      {
-        type: 'Blocked Shots',
-        value: 4
-      },
-      {
-        type: 'Shots insidebox',
-        value: 4
-      },
-      {
-        type: 'Shots outsidebox',
-        value: 5
-      },
-      {
-        type: 'Fouls',
-        value: 22
-      },
-      {
-        type: 'Corner Kicks',
-        value: 3
-      },
-      {
-        type: 'Offsides',
-        value: 1
-      },
-      {
-        type: 'Ball Possession',
-        value: '32%'
-      },
-      {
-        type: 'Yellow Cards',
-        value: 5
-      },
-      {
-        type: 'Red Cards',
-        value: 1
-      },
-      {
-        type: 'Goalkeeper Saves',
-        value: null
-      },
-      {
-        type: 'Total passes',
-        value: 242
-      },
-      {
-        type: 'Passes accurate',
-        value: 121
-      },
-      {
-        type: 'Passes %',
-        value: null
-      }
-    ]
-  };
-
-  matchStat = {
-    home: this.homeStat,
-    away: this.awayStat
-  };
-
   sampleFixtures = [this.sampleFixture, this.sampleFixture, this.sampleFixture, this.sampleFixture, this.sampleFixture];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    // this.getFixtures();
     this.getDates(this.fullDate);
-    console.log(this.selectedDate);
-
+    // this.getHomeStat(605425, 542);
+    // this.getAwayStat(605425, 542);
   }
 
   getDates = (date: Date) => {
@@ -278,11 +128,15 @@ export class HomeComponent implements OnInit {
   }
 
   getHomeStat = (fixture: number, team: number) => {
-
+    this.dataService.getStats(fixture, team).subscribe(res => {
+      this.homeStat = res.response[0];
+    });
   }
 
   getAwayStat = (fixture: number, team: number) => {
-
+    this.dataService.getStats(fixture, team).subscribe(res => {
+      this.awayStat = res.response[0];
+    });
   }
 
   clicked = () => {

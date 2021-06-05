@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
+import { FixtureStat } from './models/fixtureStat.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,20 @@ export class DataService {
         league,
         season,
         date
+      }
+    });
+  }
+
+  getStats = (fixture: number, team: number) => {
+    const url = this.apiUrl + '/fixtures/statistics';
+    return this.http.get<{ response: Array<FixtureStat> }>(url, {
+      headers: {
+        'x-rapidapi-host': this.apiHost,
+        'x-rapidapi-key': this.apiKey
+      },
+      params: {
+        fixture: fixture.toString(),
+        team: team.toString()
       }
     });
   }
