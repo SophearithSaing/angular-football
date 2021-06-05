@@ -9,8 +9,8 @@ import { DataService } from '../data.service';
 export class HomeComponent implements OnInit {
 
   fullDate = new Date();
-  selectedDate: string;
-  dates: Array<{month: string, date: string | number}>;
+  selectedDate = `${this.fullDate.getFullYear()}-${this.fullDate.getMonth() < 9 ? '0' + (this.fullDate.getMonth() + 1) : (this.fullDate.getMonth() + 1)}-${this.fullDate.getDate() < 10 ? '0' + (this.fullDate.getDate()) : (this.fullDate.getDate())}`;
+  dates: Array<{ month: string, date: string, dateString: string }>;
 
   plFixtures = [];
   fixtures = {};
@@ -237,23 +237,26 @@ export class HomeComponent implements OnInit {
     away: this.awayStat
   };
 
-  sampleFixtures = [this.sampleFixture, this.sampleFixture, this.sampleFixture];
+  sampleFixtures = [this.sampleFixture, this.sampleFixture, this.sampleFixture, this.sampleFixture, this.sampleFixture];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     // this.getFixtures();
     this.getDates(this.fullDate);
+    console.log(this.selectedDate);
+
   }
 
   getDates = (date: Date) => {
     this.dates = [];
     let newDate = new Date(date.setDate(date.getDate() - 1));
-    for (let round = 0; round < 5; round++) {
-      const dateString = `${newDate.getDate() < 9 ? '0' + (newDate.getDate()) : (newDate.getDate())}-${newDate.getMonth() < 9 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1)}-${newDate.getFullYear()}`;
+    for (let round = 0; round < 10; round++) {
+      const dateString = `${newDate.getFullYear()}-${newDate.getMonth() < 9 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1)}-${newDate.getDate() < 10 ? '0' + (newDate.getDate()) : (newDate.getDate())}`;
       const dateobject = {
         month: newDate.toLocaleDateString('en-Us', { month: 'short' }),
-        date: newDate.getDate() < 9 ? '0' + (newDate.getDate()) : (newDate.getDate())
+        date: newDate.getDate() < 10 ? '0' + (newDate.getDate()) : `${(newDate.getDate())}`,
+        dateString
       };
       this.dates.push(dateobject);
       newDate = new Date(date.setDate(date.getDate() + 1));
@@ -264,20 +267,22 @@ export class HomeComponent implements OnInit {
     console.log(matchIndex);
   }
 
-  getSelectedDate = (date: string) => {
-    console.log(date);
+  changeDate = (dateString: string) => {
+    const dateArr = dateString.split('-');
+    const date = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
+    this.getDates(date);
   }
 
-  // changeDate = (dateString: string) => {
-  //   const dateArr = dateString.split('-');
-  //   const date = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
-  //   this.getDates(date);
-  // }
-
   getFixtures = (date: string) => {
-    // TODO: format the date to get new string
+    this.selectedDate = date;
+  }
 
-    // TODO: Run getFixtures service
+  getHomeStat = (fixture: number, team: number) => {
+
+  }
+
+  getAwayStat = (fixture: number, team: number) => {
+
   }
 
   clicked = () => {

@@ -2,7 +2,7 @@
   <button nbButton class="button">
     <nb-icon icon="arrow-left-outline"></nb-icon>
   </button>
-  <div *ngFor="let date of dates" nbButton (click)="getSelectedDate(date)" class="date">
+  <div *ngFor="let date of dates" nbButton (click)="getFixtures(date.dateString)" class="date" [ngClass]="{active: date.dateString === selectedDate}">
     <p>{{date.month}}</p>
     <p>{{date.date}}</p>
   </div>
@@ -12,10 +12,35 @@
 </div>
 
 <h1 class="title">Matches</h1>
-<div class="fixture_list" *ngFor="let fixture of sampleFixtures; index as i">
-<nb-card class="fixture" (click)="openFixture(i)">
-    <img class="logo" src={{fixture.teams.home.logo}} alt="">
-    <p>{{fixture.teams.home.name}} {{fixture.goals.home}}-{{fixture.goals.away}} {{fixture.teams.away.name}}</p>
-    <img class="logo" src={{fixture.teams.away.logo}} alt="">
-</nb-card>
-</div>
+<nb-accordion>
+  <nb-accordion-item class="fixture" *ngFor="let fixture of sampleFixtures; index as i">
+    <nb-accordion-item-header>
+      <div class="fixture__header">
+        <img class="logo" src={{fixture.teams.home.logo}} alt="">
+        <p *ngIf="fixture.fixture.status.short !== 'NS'">{{fixture.teams.home.name}}
+          {{fixture.goals.home}}-{{fixture.goals.away}} {{fixture.teams.away.name}}</p>
+        <p *ngIf="fixture.fixture.status.short === 'NS'">{{fixture.teams.home.name}} vs {{fixture.teams.away.name}}</p>
+        <img class="logo" src={{fixture.teams.away.logo}} alt="">
+      </div>
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <div class="fixture__stats">
+        <div class="fixture__stats__home">
+          <p *ngFor="let stat of homeStat.statistics">
+            {{stat.value ? stat.value : 'N/A'}}
+          </p>
+        </div>
+        <div class="fixture__stats__type">
+          <p *ngFor="let stat of homeStat.statistics">
+            {{stat.type}}
+          </p>
+        </div>
+        <div class="fixture__stats__away">
+          <p *ngFor="let stat of awayStat.statistics">
+            {{stat.value ? stat.value : 'N/A'}}
+          </p>
+        </div>
+      </div>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>

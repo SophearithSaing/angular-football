@@ -3,6 +3,7 @@
 .dates {
   display: flex;
   justify-content: space-between;
+
   .button,
   .date {
     border: 1px solid nb-theme(color-primary-400);
@@ -11,13 +12,47 @@
     color: nb-theme(color-basic-100);
     padding: 15px 10px;
     text-align: center;
+
     &:hover {
       border-color: nb-theme(color-primary-400);
       background: nb-theme(color-primary-400);
     }
+
     p {
       font-weight: 600;
       margin: 0;
+    }
+  }
+
+  .active {
+    border-color: nb-theme(color-primary-400);
+    background: nb-theme(color-primary-400);
+  }
+
+  @media (max-width: 768px) {
+    :nth-child(11),
+    :nth-child(10) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    :nth-child(9),
+    :nth-child(8) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    :nth-child(7),
+    :nth-child(6) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 360px) {
+    :nth-child(5){
+      display: none;
     }
   }
 }
@@ -26,49 +61,44 @@
   text-align: center;
 }
 
-.fixture_list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+nb-accordion-item-header {
+  padding: 0;
 }
 
 .fixture {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
+  margin-bottom: 24px;
 
-.fixture__stats {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-}
+  &__header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 24px;
 
-.fixture__stats__home {
-  display: flex;
-  flex-direction: column;
-}
+    nb-icon.expansion-indicator {
+      display: none;
+    }
+  }
 
-.fixture__stats__type {
-  display: flex;
-  flex-direction: column;
-}
+  &__stats {
+    margin: auto;
+    display: flex;
+    max-width: 500px;
+    justify-content: space-around;
+    text-align: center;
 
-.fixture__stats__away {
-  display: flex;
-  flex-direction: column;
+    &__home,
+    &__away,
+    &__type {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 
 .logo {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   padding: 10px;
-}
-
-.stat__card {
-  width: 400px;
 }

@@ -12,7 +12,8 @@ import { HomeComponent } from './home/home.component';
 import {
   NbThemeModule,
   NbLayoutModule,
-  NbButtonModule
+  NbButtonModule,
+  NbAccordionModule
   } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
@@ -33,6 +34,7 @@ import { NbIconModule } from '@nebular/theme';
     NbEvaIconsModule,
     NbIconModule,
     NbButtonModule,
+    NbAccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

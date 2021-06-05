@@ -11,17 +11,18 @@ export class DataService {
   apiHost = environment.apiHost;
   apiKey = environment.apiKey;
 
-  laLigaId = 140;
-  eplId = 39;
-  serieAId = 135;
-  bundesligaId = 78;
-  league1Id = 61;
+  laLigaID = 140;
+  eplID = 39;
+  serieAID = 135;
+  bundesligaID = 78;
+  league1ID = 61;
+  euroID = 4;
 
   constructor(private http: HttpClient) { }
 
   getFixtures = (league: string, date: string) => {
-    console.log(this.apiHost, this.apiKey);
     const url = this.apiUrl + '/fixtures';
+    const season = '2020';
     return this.http.get<{response: Array<any>}>(url, {
       headers: {
         'x-rapidapi-host': this.apiHost,
@@ -29,7 +30,7 @@ export class DataService {
       },
       params: {
         league,
-        season: '2020',
+        season,
         date
       }
     });
