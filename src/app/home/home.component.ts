@@ -250,7 +250,6 @@ export class HomeComponent implements OnInit {
     this.dates = [];
     let newDate = new Date(date.setDate(date.getDate() - 1));
     for (let round = 0; round < 3; round++) {
-      console.log(newDate);
       const dateString = `${newDate.getDate() < 9 ? '0' + (newDate.getDate()) : (newDate.getDate())}-${newDate.getMonth() < 9 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1)}-${newDate.getFullYear()}`;
       this.dates.push(dateString);
       newDate = new Date(date.setDate(date.getDate() + 1));

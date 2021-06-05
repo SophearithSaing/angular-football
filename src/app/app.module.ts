@@ -32,7 +32,7 @@ import { NbIconModule } from '@nebular/theme';
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
-    NbButtonModule
+    NbButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
