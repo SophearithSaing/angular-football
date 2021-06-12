@@ -11,9 +11,11 @@
   </button>
 </div>
 
-<h1 class="title">Matches</h1>
+<div class="competition">
+  <img src="{{euro.logo}}" alt="">
+</div>
 <nb-accordion>
-  <nb-accordion-item class="fixture" *ngFor="let fixture of sampleFixtures; index as i">
+  <nb-accordion-item class="fixture" *ngFor="let fixture of fixtures; index as i">
     <nb-accordion-item-header>
       <div class="fixture__header">
         <img class="logo" src={{fixture.teams.home.logo}} alt="">
