@@ -13,7 +13,8 @@ import {
   NbThemeModule,
   NbLayoutModule,
   NbButtonModule,
-  NbAccordionModule
+  NbAccordionModule,
+  NbCardModule
   } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
@@ -34,7 +35,8 @@ import { NbIconModule } from '@nebular/theme';
     NbEvaIconsModule,
     NbIconModule,
     NbButtonModule,
-    NbAccordionModule
+    NbAccordionModule,
+    NbCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
