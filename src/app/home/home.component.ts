@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Fixture } from '../models/fixture.model';
 import { FixtureStat } from '../models/fixtureStat.model';
 
 @Component({
@@ -9,15 +10,17 @@ import { FixtureStat } from '../models/fixtureStat.model';
 })
 export class HomeComponent implements OnInit {
 
-  fullDate = new Date();
+  fullDate = new Date('06-15-2021');
   selectedDate = `${this.fullDate.getFullYear()}-${this.fullDate.getMonth() < 9 ? '0' + (this.fullDate.getMonth() + 1) : (this.fullDate.getMonth() + 1)}-${this.fullDate.getDate() < 10 ? '0' + (this.fullDate.getDate()) : (this.fullDate.getDate())}`;
   dates: Array<{ month: string; date: string; dateString: string }>;
-
-  plFixtures = [];
-  fixtures = {};
-
+  fixtures: Array<Fixture>;
   homeStat: FixtureStat;
   awayStat: FixtureStat;
+
+  euro = {
+    name: 'Euro Championship',
+    logo: 'https://media.api-sports.io/football/leagues/4.png',
+  };
 
   sampleFixture = {
     fixture: {
@@ -94,6 +97,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDates(this.fullDate);
+    this.getFixtures(this.selectedDate);
     // this.getHomeStat(605425, 542);
     // this.getAwayStat(605425, 542);
   }
@@ -125,6 +129,10 @@ export class HomeComponent implements OnInit {
 
   getFixtures = (date: string) => {
     this.selectedDate = date;
+    this.dataService.getFixtures(4, date).subscribe(res => {
+      this.fixtures = res.response;
+      console.log(date, res.response);
+    });
   }
 
   getHomeStat = (fixture: number, team: number) => {
