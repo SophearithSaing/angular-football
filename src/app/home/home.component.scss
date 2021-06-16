@@ -3,13 +3,14 @@
 .dates {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 24px;
 
   .button,
   .date {
     border: 1px solid nb-theme(color-primary-400);
     border-radius: 4px;
-    background: nb-theme(color-primary-transparent-100);
-    color: nb-theme(color-basic-100);
+    // background: nb-theme(color-primary-transparent-100);
+    color: nb-theme(color-basic-900);
     padding: 15px 10px;
     text-align: center;
 
@@ -27,6 +28,9 @@
   .active {
     border-color: nb-theme(color-primary-400);
     background: nb-theme(color-primary-400);
+    p {
+      color: nb-theme(color-basic-100);
+    }
   }
 
   @media (max-width: 768px) {
@@ -65,6 +69,11 @@ nb-accordion-item-header {
   padding: 0;
 }
 
+.competition {
+  text-align: center;
+  padding: 24px;
+}
+
 .fixture {
   margin-bottom: 24px;
 
@@ -74,11 +83,7 @@ nb-accordion-item-header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 24px;
-
-    nb-icon.expansion-indicator {
-      display: none;
-    }
+    padding: 0;
   }
 
   &__stats {
@@ -101,4 +106,18 @@ nb-accordion-item-header {
   height: 80px;
   width: 80px;
   padding: 10px;
+
+  @media (max-width: 768px) {
+    height: 70px;
+    width: 70px;
+  }
+
+  @media (max-width: 500px) {
+    height: 60px;
+    width: 60px;
+  }
+
+  // @media (max-width: 420px) {
+  //   display: none;
+  // }
 }
